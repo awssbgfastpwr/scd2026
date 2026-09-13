@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-textPrimary font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading uppercase;
+  }
+}
+
+/* Leaflet Neo-Brutalist Overrides */
+.leaflet-container {
+  font-family: inherit;
+  z-index: 10;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+.leaflet-popup-content {
+  margin: 12px;
+}
+.leaflet-control-zoom a {
+  border: 3px solid #000000 !important;
+  border-radius: 0 !important;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  margin-bottom: -3px; /* Overlap borders */
+  box-shadow: none !important;
+}
+.leaflet-control-zoom a:hover {
+  background-color: #f0f0f0 !important;
+}
+
+html {
+  scroll-padding-top: 84px; /* Navbar h-20 (80px) + border-b-[3px] (3px) + 1px buffer */
+  scroll-behavior: smooth;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) rotate(-5deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-30px, -20px) rotate(-5deg); }
+  66% { transform: translate(20px, 30px) rotate(5deg); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 10s ease-in-out infinite 2s;
+}
+
+.animate-float-slow {
+  animation: float 12s ease-in-out infinite 4s;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 9s ease-in-out infinite 1s;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 15s linear infinite;
+}
+
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+

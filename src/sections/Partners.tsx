@@ -12,21 +12,22 @@ export function Partners() {
 
   return (
     <section id="partners" className="bg-cream border-b-[3px] border-black">
-      <ScrollReveal>
-        <div className="max-w-7xl mx-auto px-4 pb-20 pt-20">
-          {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-4 pb-20 pt-20">
+        {/* Section Header */}
+        <ScrollReveal>
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 bg-accent border-[3px] border-black font-heading text-xs font-bold uppercase tracking-wider mb-4">
               Collaboration
             </span>
             <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tight">
-              Community & Partners
+              Community &amp; Partners
             </h2>
           </div>
+        </ScrollReveal>
 
-          {/* Marquee Container */}
-          <div className="relative w-full overflow-hidden py-6 marquee-pause">
-            <div className="flex gap-4 md:gap-6 w-max animate-marquee">
+        {/* Marquee Container — intentionally outside ScrollReveal so animation isn't gated */}
+        <div className="relative w-full overflow-hidden py-6 marquee-pause">
+          <div className="flex gap-4 md:gap-6 w-max animate-marquee">
               {duplicated.map((partner, index) => {
                 const hasValidUrl = partner.websiteUrl && partner.websiteUrl !== '#';
                 const cardClasses = "flex-shrink-0 w-[180px] md:w-[200px] block bg-white border-[3px] border-black shadow-neo hover:shadow-neo-hover hover:-translate-y-1 transition-all cursor-pointer text-inherit";
@@ -87,10 +88,9 @@ export function Partners() {
                   </div>
                 );
               })}
-            </div>
           </div>
         </div>
-      </ScrollReveal>
+      </div>
     </section>
   );
 }

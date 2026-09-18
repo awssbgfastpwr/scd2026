@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useSiteData } from '../context/SiteDataContext';
+import type { FAQ as FAQType } from '../data/siteData';
 import { NeoBadge } from '../components/NeoBadge';
 import { NeoCard } from '../components/NeoCard';
 import { cn } from '../lib/utils';
 
 export function FAQ() {
   const { siteData } = useSiteData();
-  const faqs = siteData.faqs.filter(f => f.isPublished);
-  const visibleFaqs = faqs.filter(f => f.isPublished).sort((a, b) => a.displayOrder - b.displayOrder);
+  const visibleFaqs = siteData.faqs.filter(f => f.isPublished).sort((a, b) => a.displayOrder - b.displayOrder);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -40,7 +40,7 @@ export function FAQ() {
   );
 }
 
-function FAQItem({ faq, isOpen, onToggle }: { faq: any, isOpen: boolean, onToggle: () => void }) {
+function FAQItem({ faq, isOpen, onToggle }: { faq: FAQType, isOpen: boolean, onToggle: () => void }) {
   return (
     <NeoCard className="p-0 overflow-hidden cursor-pointer" onClick={onToggle}>
       <div className="p-6 flex items-center justify-between gap-4 select-none">

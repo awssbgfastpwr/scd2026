@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NeoButton } from './NeoButton';
+import { useSiteData } from '../context/SiteDataContext';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { siteData } = useSiteData();
+  const { settings, event } = siteData;
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -14,9 +17,8 @@ export function Navbar() {
     { name: 'FAQ', href: '#faq' },
   ];
 
-  const handleAdminClick = () => {
-    window.location.href = '/admin/login';
-  };
+  // Close mobile menu after a tick so the scroll anchor fires first
+  const closeMobileMenu = () => setTimeout(() => setIsOpen(false), 100);
 
   return (
     <nav className="sticky top-0 z-50 bg-secondary border-b-[3px] border-black shadow-[0px_4px_0px_0px_#000] rounded-none w-full">
@@ -42,7 +44,15 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          <NeoButton variant="primary" href="#home">Register Now</NeoButton>
+          {settings.registrationOpen ? (
+            <NeoButton variant="primary" href={event.secondaryButtonLink}>
+              Register Now
+            </NeoButton>
+          ) : (
+            <NeoButton variant="secondary" disabled>
+              Registration Closed
+            </NeoButton>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -53,13 +63,6 @@ export function Navbar() {
         >
           <Menu className="w-6 h-6" />
         </button>
-
-        {/* Hidden Admin Button */}
-        <button 
-          onClick={handleAdminClick} 
-          className="absolute top-2 right-2 w-1 h-1 opacity-0 cursor-default"
-          aria-label="Admin Login"
-        />
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -79,15 +82,21 @@ export function Navbar() {
               <a 
                 key={link.name} 
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={closeMobileMenu}
                 className="font-heading font-bold uppercase text-3xl text-textPrimary hover:text-primary transition-colors"
               >
                 {link.name}
               </a>
             ))}
-            <NeoButton variant="primary" href="#home" onClick={() => setIsOpen(false)} className="mt-4">
-              Register Now
-            </NeoButton>
+            {settings.registrationOpen ? (
+              <NeoButton variant="primary" href={event.secondaryButtonLink} onClick={closeMobileMenu} className="mt-4">
+                Register Now
+              </NeoButton>
+            ) : (
+              <NeoButton variant="secondary" disabled className="mt-4">
+                Registration Closed
+              </NeoButton>
+            )}
           </div>
         </div>
       )}

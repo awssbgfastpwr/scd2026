@@ -22,8 +22,8 @@ export function HeroEditor() {
   
   const syncCountdownTarget = (dateStr: string, timeStr: string) => {
     try {
-      // Parse display date: "September 11th, 2026" → Date object
-      const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
+      // Parse display date: e.g. "October 7th, 2026" -> remove th/st/nd/rd
+      const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/gi, '$1').trim();
       const parsed = new Date(cleaned);
       if (isNaN(parsed.getTime())) return;
   

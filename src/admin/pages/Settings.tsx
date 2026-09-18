@@ -37,8 +37,6 @@ export function Settings() {
     }));
   };
 
-
-
   return (
     <div className="flex flex-col gap-8">
       {/* Save Button */}
@@ -58,8 +56,78 @@ export function Settings() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
+        {/* Left Column: Event & Registration */}
         <div className="flex flex-col gap-8">
+          <NeoCard className="bg-white p-6">
+            <h3 className="font-heading text-2xl font-black mb-6 uppercase">Registration & Capacity</h3>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3 p-3 bg-secondary/20 border-[3px] border-black">
+                <input 
+                  type="checkbox" 
+                  id="regOpen" 
+                  className="w-5 h-5 accent-primary cursor-pointer"
+                  checked={settingsData.registrationOpen}
+                  onChange={(e) => handleUpdate('registrationOpen', e.target.checked)}
+                />
+                <label htmlFor="regOpen" className="font-heading font-bold text-sm uppercase cursor-pointer select-none">
+                  Registration Open (Controls Navbar & Hero buttons)
+                </label>
+              </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <NeoInput 
+                  label="Max Capacity" 
+                  type="number"
+                  value={String(settingsData.maxCapacity)} 
+                  onChange={(e) => handleUpdate('maxCapacity', parseInt(e.target.value, 10) || 0)} 
+                />
+                <NeoInput 
+                  label="Current Registrations" 
+                  type="number"
+                  value={String(settingsData.currentRegistrations)} 
+                  onChange={(e) => handleUpdate('currentRegistrations', parseInt(e.target.value, 10) || 0)} 
+                />
+              </div>
+            </div>
+          </NeoCard>
+
+          <NeoCard className="bg-white p-6">
+            <h3 className="font-heading text-2xl font-black mb-6 uppercase">Footer & Legal</h3>
+            <div className="flex flex-col gap-4">
+              <NeoInput 
+                label="Footer Copyright" 
+                value={settingsData.footerCopyright} 
+                onChange={(e) => handleUpdate('footerCopyright', e.target.value)} 
+              />
+              <NeoInput 
+                label="Footer Credits" 
+                value={settingsData.footerCredits} 
+                onChange={(e) => handleUpdate('footerCredits', e.target.value)} 
+              />
+            </div>
+          </NeoCard>
+        </div>
+
+        {/* Right Column: SEO & Social */}
+        <div className="flex flex-col gap-8">
+          <NeoCard className="bg-white p-6">
+            <h3 className="font-heading text-2xl font-black mb-6 uppercase">SEO & Metadata</h3>
+            <div className="flex flex-col gap-4">
+              <NeoInput 
+                label="Page Title (SEO)" 
+                value={settingsData.seoTitle} 
+                onChange={(e) => handleUpdate('seoTitle', e.target.value)} 
+              />
+              <div className="flex flex-col gap-2">
+                <label className="font-heading font-black text-lg uppercase">Meta Description</label>
+                <textarea 
+                  className="rounded-none w-full p-3 border-[3px] border-black shadow-neo-sm font-bold outline-none focus:shadow-neo-hover transition-all min-h-[90px]"
+                  value={settingsData.seoDescription}
+                  onChange={(e) => handleUpdate('seoDescription', e.target.value)}
+                />
+              </div>
+            </div>
+          </NeoCard>
 
           <NeoCard className="bg-white p-6">
             <h3 className="font-heading text-2xl font-black mb-6 uppercase">Social Links</h3>
@@ -87,8 +155,6 @@ export function Settings() {
             </div>
           </NeoCard>
         </div>
-
-
 
       </div>
 

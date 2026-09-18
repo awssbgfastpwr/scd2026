@@ -66,7 +66,7 @@ function App() {
   return (
     <SiteDataProvider>
       <SEOUpdater />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
         {/* Public Site */}
         <Route path="/" element={

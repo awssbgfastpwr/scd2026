@@ -1,13 +1,10 @@
+import { Link } from 'react-router-dom';
 import { useSiteData } from '../context/SiteDataContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 
 export function Footer() {
   const { siteData } = useSiteData();
   const { settings } = siteData;
-
-  const handleAdminClick = () => {
-    window.location.href = '/admin/login';
-  };
 
   return (
     <ScrollReveal>
@@ -26,7 +23,7 @@ export function Footer() {
           {/* Logo and Tagline */}
           <div className="flex flex-col items-center mb-12">
             <img 
-              src="/images/aws-logo-simple.png" 
+              src={`${import.meta.env.BASE_URL}images/aws-logo-simple.png`} 
               alt="AWS" 
               className="mb-6 rounded-none border-[3px] border-gray-700 bg-white object-contain px-2 py-1 h-[45px] w-auto"
             />
@@ -85,7 +82,7 @@ export function Footer() {
               aria-label="Meetup"
             >
               <img 
-                src="/images/meetup-logo.png" 
+                src={`${import.meta.env.BASE_URL}images/meetup-logo.png`} 
                 alt="Meetup" 
                 className="w-full h-full object-cover"
               />
@@ -102,16 +99,16 @@ export function Footer() {
   
         {/* Admin Login — Bottom Left */}
         <div className="absolute bottom-4 left-4 z-20">
-          <button
-            onClick={handleAdminClick}
-            className="group relative px-4 py-2 bg-black border-[3px] border-black shadow-neo-sm overflow-hidden hover:shadow-neo transition-all"
+          <Link
+            to="/admin/login"
+            className="group relative inline-block px-4 py-2 bg-black border-[3px] border-black shadow-neo-sm overflow-hidden hover:shadow-neo transition-all"
             aria-label="Admin Login"
           >
             <span className="relative z-10 font-heading text-xs font-bold uppercase tracking-wider text-white group-hover:text-black transition-colors">
               Admin
             </span>
             <div className="absolute inset-0 bg-secondary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-200" />
-          </button>
+          </Link>
         </div>
       </footer>
     </ScrollReveal>

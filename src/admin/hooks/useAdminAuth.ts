@@ -31,7 +31,8 @@ export function useAdminAuth() {
     try {
       localStorage.removeItem(AUTH_KEY);
       setIsAuthenticated(false);
-      window.location.href = '/admin/login';
+      const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+      window.location.href = `${base}/admin/login`;
     } catch {
       // silent fail
     }

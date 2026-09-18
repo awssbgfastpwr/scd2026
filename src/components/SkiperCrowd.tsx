@@ -21,7 +21,7 @@ export function SkiperCrowd({ className }: SkiperCrowdProps) {
     if (!ctx) return;
 
     const config = {
-      src: "/images/peeps/all-peeps.png",
+      src: `${import.meta.env.BASE_URL}images/peeps/all-peeps.png`,
       rows: 15,
       cols: 7,
     };

@@ -27,7 +27,7 @@ export function Navbar() {
         {/* Left: Logo */}
         <div className="flex-shrink-0">
           <img 
-            src="/images/aws-logo-navbar.png" 
+            src={`${import.meta.env.BASE_URL}images/aws-logo-navbar.png`} 
             alt="AWS Student Builder Group FAST PWR" 
             className="h-14 w-auto"
           />

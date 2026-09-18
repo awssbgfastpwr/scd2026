@@ -48,7 +48,7 @@ export function AdminTopbar({ onMenuClick, title }: AdminTopbarProps) {
           {isCopied ? <Check size={16} /> : <Copy size={16} />}
           <span>{isCopied ? 'Copied!' : 'Export Config'}</span>
         </NeoButton>
-        <NeoButton href="/" variant="secondary" className="hidden sm:flex items-center gap-2 text-xs py-2 px-3 sm:px-4">
+        <NeoButton href={import.meta.env.BASE_URL} variant="secondary" className="hidden sm:flex items-center gap-2 text-xs py-2 px-3 sm:px-4">
           Preview Site <ExternalLink size={16} />
         </NeoButton>
       </div>

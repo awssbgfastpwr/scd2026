@@ -2,11 +2,17 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NeoButton } from './NeoButton';
 import { useSiteData } from '../context/SiteDataContext';
+import { isEventRegistrationOpen } from '../lib/utils';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { siteData } = useSiteData();
   const { settings, event } = siteData;
+
+  const isRegistrationActive = isEventRegistrationOpen(
+    event.countdownTarget,
+    settings.registrationOpen
+  );
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -44,7 +50,7 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          {settings.registrationOpen ? (
+          {isRegistrationActive ? (
             <NeoButton variant="primary" href={event.secondaryButtonLink}>
               Register Now
             </NeoButton>
@@ -88,7 +94,7 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            {settings.registrationOpen ? (
+            {isRegistrationActive ? (
               <NeoButton variant="primary" href={event.secondaryButtonLink} onClick={closeMobileMenu} className="mt-4">
                 Register Now
               </NeoButton>

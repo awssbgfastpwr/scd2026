@@ -4,11 +4,17 @@ import { NeoCard } from '../components/NeoCard';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { useCountdown } from '../hooks/useCountdown';
 import { SkiperCrowd } from '../components/SkiperCrowd';
+import { isEventRegistrationOpen } from '../lib/utils';
 
 export function Hero() {
   const { siteData } = useSiteData();
-  const { event } = siteData;
+  const { event, settings } = siteData;
   const timeLeft = useCountdown(event.countdownTarget);
+
+  const isRegistrationActive = isEventRegistrationOpen(
+    event.countdownTarget,
+    settings.registrationOpen && !event.secondaryButtonDisabled
+  );
 
   const formatNumber = (num: number) => num.toString().padStart(2, '0');
 
@@ -67,8 +73,13 @@ export function Hero() {
             <NeoButton variant="primary" href={event.primaryButtonLink} className="w-full sm:w-auto">
               {event.primaryButtonText}
             </NeoButton>
-            <NeoButton variant="secondary" href={event.secondaryButtonLink} disabled={event.secondaryButtonDisabled} className="w-full sm:w-auto">
-              {event.secondaryButtonText}
+            <NeoButton 
+              variant="secondary" 
+              href={isRegistrationActive ? event.secondaryButtonLink : undefined} 
+              disabled={!isRegistrationActive} 
+              className="w-full sm:w-auto"
+            >
+              {isRegistrationActive ? event.secondaryButtonText : 'REGISTRATION CLOSED'}
             </NeoButton>
           </div>
         </ScrollReveal>

@@ -25,7 +25,7 @@ const navItems = [
 
 export function AdminSidebar({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const location = useLocation();
-  const { logout } = useAdminAuth();
+  const { user, logout } = useAdminAuth();
 
   return (
     <>
@@ -71,6 +71,23 @@ export function AdminSidebar({ isOpen, onClose }: { isOpen: boolean, onClose: ()
             );
           })}
         </nav>
+
+        {/* Logged in GitHub User */}
+        {user && (
+          <div className="p-4 border-t-[3px] border-black bg-white/5 flex items-center gap-3">
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-9 h-9 border-[2px] border-black object-cover"
+            />
+            <div className="overflow-hidden">
+              <p className="font-heading font-black text-xs uppercase text-white truncate">
+                {user.name || user.login}
+              </p>
+              <p className="text-[10px] text-gray-400 font-mono truncate">@{user.login}</p>
+            </div>
+          </div>
+        )}
 
         <div className="p-4 border-t-[3px] border-black">
           <button

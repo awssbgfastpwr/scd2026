@@ -95,8 +95,8 @@ export const defaultSiteData: SiteData = {
     countdownTarget: "2026-10-07T10:00:00+05:00",
     primaryButtonText: "VIEW AGENDA",
     primaryButtonLink: "#agenda",
-    secondaryButtonText: "REGISTRATION CLOSED",
-    secondaryButtonDisabled: true,
+    secondaryButtonText: "REGISTER NOW",
+    secondaryButtonDisabled: false,
     secondaryButtonLink: "#",
     venueName: "FAST University",
     venueAddress: "National University of Computer & Emerging Sciences - FAST Peshawar Campus",
@@ -334,7 +334,7 @@ export const defaultSiteData: SiteData = {
     }
   ],
   settings: {
-    registrationOpen: false,
+    registrationOpen: true,
     maxCapacity: 500,
     currentRegistrations: 15,
     socialInstagram: "https://www.instagram.com/awssbgfastpwr/",

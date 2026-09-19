@@ -51,7 +51,12 @@ export function Navbar() {
             </a>
           ))}
           {isRegistrationActive ? (
-            <NeoButton variant="primary" href={event.secondaryButtonLink}>
+            <NeoButton 
+              variant="primary" 
+              href={event.secondaryButtonLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Register Now
             </NeoButton>
           ) : (
@@ -95,7 +100,14 @@ export function Navbar() {
               </a>
             ))}
             {isRegistrationActive ? (
-              <NeoButton variant="primary" href={event.secondaryButtonLink} onClick={closeMobileMenu} className="mt-4">
+              <NeoButton 
+                variant="primary" 
+                href={event.secondaryButtonLink} 
+                onClick={closeMobileMenu} 
+                className="mt-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Register Now
               </NeoButton>
             ) : (

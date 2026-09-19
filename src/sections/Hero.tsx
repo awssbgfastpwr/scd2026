@@ -78,6 +78,8 @@ export function Hero() {
               href={isRegistrationActive ? event.secondaryButtonLink : undefined} 
               disabled={!isRegistrationActive} 
               className="w-full sm:w-auto"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {isRegistrationActive ? event.secondaryButtonText : 'REGISTRATION CLOSED'}
             </NeoButton>

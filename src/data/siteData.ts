@@ -97,7 +97,7 @@ export const defaultSiteData: SiteData = {
     primaryButtonLink: "#agenda",
     secondaryButtonText: "REGISTER NOW",
     secondaryButtonDisabled: false,
-    secondaryButtonLink: "#",
+    secondaryButtonLink: "https://www.meetup.com/aws-sbg-at-nuces/events/314349113",
     venueName: "FAST University",
     venueAddress: "National University of Computer & Emerging Sciences - FAST Peshawar Campus",
     venueCity: "Peshawar",

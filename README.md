@@ -94,14 +94,14 @@ In the repository's **Settings > Pages** screen, set **Source** to **GitHub Acti
 
 The workflow sets `GITHUB_PAGES=true` during the build. [`vite.config.ts`](vite.config.ts) then uses `/scd2026/` as Vite's base path so scripts, styles, images, and routes load under the project URL. [`public/404.html`](public/404.html) redirects direct requests such as `/scd2026/admin/login` back through the React router.
 
-To publish this checkout to the organization repository, add a separate remote and push `main`:
+GitHub moved the repository to the `awssbgfastpwr` organization. If this checkout still uses the old personal repository URL, update `origin` before pushing:
 
 ```bash
-git remote add production https://github.com/awssbgfastpwr/scd2026.git
-git push production main
+git remote set-url origin https://github.com/awssbgfastpwr/scd2026.git
+git push origin main
 ```
 
-Use `git remote set-url production https://github.com/awssbgfastpwr/scd2026.git` if the `production` remote already exists with the wrong URL. Check deployment progress in the repository's [Actions tab](https://github.com/awssbgfastpwr/scd2026/actions).
+Check deployment progress in the repository's [Actions tab](https://github.com/awssbgfastpwr/scd2026/actions).
 
 [`vercel.json`](vercel.json) remains available for optional Vercel deployments. It rewrites client-side routes, including `/admin/*`, to `index.html`.
 

@@ -90,9 +90,9 @@ export const defaultSiteData: SiteData = {
     "title": "AWS Student Community Day Peshawar",
     "location": "Peshawar",
     "tagline": "An immersive, one-day learning conference designed specifically for students.",
-    "date": "October 7th, 2026",
+    "date": "October 21st, 2026",
     "time": "10AM — 4PM",
-    "countdownTarget": "2026-10-07T10:00:00+05:00",
+    "countdownTarget": "2026-10-21T10:00:00+05:00",
     "primaryButtonText": "VIEW AGENDA",
     "primaryButtonLink": "#agenda",
     "secondaryButtonText": "REGISTER NOW",
@@ -206,44 +206,7 @@ export const defaultSiteData: SiteData = {
       "isVisible": true
     }
   ],
-  "partners": [
-    {
-      "id": "partner-1",
-      "name": "Name",
-      "tagline": "Description",
-      "websiteUrl": "#",
-      "logoUrl": "",
-      "displayOrder": 1,
-      "isVisible": true
-    },
-    {
-      "id": "partner-2",
-      "name": "Name",
-      "tagline": "Description",
-      "websiteUrl": "#",
-      "logoUrl": "",
-      "displayOrder": 2,
-      "isVisible": true
-    },
-    {
-      "id": "partner-3",
-      "name": "Name",
-      "tagline": "Description",
-      "websiteUrl": "#",
-      "logoUrl": "",
-      "displayOrder": 3,
-      "isVisible": true
-    },
-    {
-      "id": "partner-4",
-      "name": "Name",
-      "tagline": "Description",
-      "websiteUrl": "#",
-      "logoUrl": "",
-      "displayOrder": 4,
-      "isVisible": true
-    }
-  ],
+  "partners": [],
   "organizers": [
     {
       "id": "org-1",

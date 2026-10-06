@@ -2,7 +2,7 @@
 
 A modern, high-performance landing page and lightweight content management system for the AWS Student Community Day, hosted at FAST University (NUCES) Peshawar. Built to deliver a premium attendee experience with a neo-brutalist design, fast load times, and an in-browser admin panel for editing site content without touching code for day-to-day updates.
 
-**Live URL:** [https://aws-community-day-2026-dusky.vercel.app](https://aws-community-day-2026-dusky.vercel.app)
+**Live URL:** [https://awssbgfastpwr.github.io/scd2026/](https://awssbgfastpwr.github.io/scd2026/)
 
 ## Features
 
@@ -80,11 +80,30 @@ The site ships with a client-side admin panel at `/admin` for editing content (s
 
 ### Authentication
 
-Admin login is a **hardcoded** email/password check in [`src/admin/hooks/useAdminAuth.ts`](src/admin/hooks/useAdminAuth.ts) (no server, no real user accounts). Successful login just sets a flag in `localStorage`. This is intentionally lightweight for a small, trusted-editor use case — it is **not** suitable for protecting sensitive data, and the credentials are visible to anyone who reads the client bundle. Update the constants in that file to change the login credentials.
+The admin login accepts a GitHub personal access token and verifies both the GitHub account and its push access to the configured repository. The browser stores the token in `localStorage` and uses it for GitHub API requests; this is a client-side integration, not a server-managed session.
+
+Use a fine-grained token limited to this repository, grant only the permissions required to publish content, and set a short expiration date. Sign out after editing, avoid shared or untrusted devices, and revoke the token in [GitHub settings](https://github.com/settings/tokens) if the browser or device may be compromised. Never commit a token or shared password to this repository.
 
 ## Deployment
 
-This project is a static single-page app optimized for static hosting and is currently **deployed on Vercel**. [`vercel.json`](vercel.json) rewrites all routes to `index.html` so client-side routing (including `/admin/*`) works correctly on refresh/direct navigation.
+GitHub Pages hosts the production site at [https://awssbgfastpwr.github.io/scd2026/](https://awssbgfastpwr.github.io/scd2026/). A push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which installs dependencies, builds the site, uploads `dist/`, and deploys the artifact to Pages.
+
+### GitHub Pages configuration
+
+In the repository's **Settings > Pages** screen, set **Source** to **GitHub Actions**. Do not select `main` under **Deploy from a branch**; that legacy publishing mode prevents `actions/deploy-pages` from creating a deployment.
+
+The workflow sets `GITHUB_PAGES=true` during the build. [`vite.config.ts`](vite.config.ts) then uses `/scd2026/` as Vite's base path so scripts, styles, images, and routes load under the project URL. [`public/404.html`](public/404.html) redirects direct requests such as `/scd2026/admin/login` back through the React router.
+
+To publish this checkout to the organization repository, add a separate remote and push `main`:
+
+```bash
+git remote add production https://github.com/awssbgfastpwr/scd2026.git
+git push production main
+```
+
+Use `git remote set-url production https://github.com/awssbgfastpwr/scd2026.git` if the `production` remote already exists with the wrong URL. Check deployment progress in the repository's [Actions tab](https://github.com/awssbgfastpwr/scd2026/actions).
+
+[`vercel.json`](vercel.json) remains available for optional Vercel deployments. It rewrites client-side routes, including `/admin/*`, to `index.html`.
 
 ## Screenshots
 

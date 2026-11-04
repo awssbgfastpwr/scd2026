@@ -87,7 +87,7 @@ export interface SiteData {
 
 export const defaultSiteData: SiteData = {
   "event": {
-    "title": "AWS Student Community Day afsfasfasf",
+    "title": "AWS Student Community Day FAST Peshawar",
     "location": "Peshawar",
     "tagline": "An immersive, one-day learning conference designed specifically for students.",
     "date": "October 21st, 2026",
